@@ -1,0 +1,27 @@
+#version 330 core
+layout (points) in;
+layout (points) out;
+
+uniform float numBlades;
+
+in vec4 colourPass1[];
+in vec2 TexCoord[];
+out vec4 fragColourPass;
+out vec2 TexCoordPass;
+
+uniform vec4 baseColour;
+uniform vec4 tipColour;
+uniform float flowers;
+uniform vec4 flowerColour;
+
+void main() {    
+    
+    fragColourPass = baseColour;
+
+   gl_Position = gl_in[0].gl_Position;
+    EmitVertex();
+
+
+    TexCoordPass = TexCoord[0];
+}  
+

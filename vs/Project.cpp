@@ -92,6 +92,9 @@ init(void)
 	ShaderInfo  shaders[] =
 	{
 		{ GL_VERTEX_SHADER, "media/cw2.vert" },
+
+		//{ GL_GEOMETRY_SHADER,  "media/cw2.geom" },
+		{ GL_GEOMETRY_SHADER,  "media/cw2.geometry" },
 				
 		{ GL_FRAGMENT_SHADER, "media/cw2.frag" },
 
@@ -345,10 +348,11 @@ display(void)
 	//modify position using mv & p
 	glBindVertexArray(VAOs[0]);
 	//glBindTexture(GL_TEXTURE_2D, texture1);
-	//glDrawArrays(GL_POINTS, 0, 25);
+	
+	//glDrawArrays(GL_POINTS, 0, 50);
 	//glDrawElements(GL_TRIANGLES, NumVertices, GL_UNSIGNED_INT, 0);
-
-	glDrawElements(GL_TRIANGLES, 36, GL_UNSIGNED_INT, 0);
+	//glDrawArrays(GL_POINTS, 0, 4);
+	glDrawElements(GL_POINTS, 36, GL_UNSIGNED_INT, 0);
 }
 
 
