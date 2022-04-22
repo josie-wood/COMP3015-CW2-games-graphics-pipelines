@@ -1,6 +1,9 @@
 #version 330 core
-layout (points) in;
-layout (points) out;
+//layout (points) in;
+//layout (points) out;
+
+layout(triangles) in;
+layout(triangle_strip, max_vertices = 4) out;
 
 uniform float numBlades;
 
@@ -10,17 +13,18 @@ out vec4 fragColourPass;
 out vec2 TexCoordPass;
 
 uniform vec4 baseColour;
-uniform vec4 tipColour;
-uniform float flowers;
-uniform vec4 flowerColour;
+
 
 void main() {    
     
     fragColourPass = baseColour;
 
-   gl_Position = gl_in[0].gl_Position;
-    EmitVertex();
 
+for(int i = 0; i < gl_in.length(); i++)
+    {
+        gl_Position = gl_in[i].gl_Position;
+        EmitVertex();
+    }
 
     TexCoordPass = TexCoord[0];
 }  

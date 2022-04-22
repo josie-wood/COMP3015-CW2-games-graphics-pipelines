@@ -352,7 +352,8 @@ display(void)
 	//glDrawArrays(GL_POINTS, 0, 50);
 	//glDrawElements(GL_TRIANGLES, NumVertices, GL_UNSIGNED_INT, 0);
 	//glDrawArrays(GL_POINTS, 0, 4);
-	glDrawElements(GL_POINTS, 36, GL_UNSIGNED_INT, 0);
+	//glDrawElements(GL_POINTS, 36, GL_UNSIGNED_INT, 0);
+	glDrawElements(GL_TRIANGLES, 36, GL_UNSIGNED_INT, 0);
 }
 
 
