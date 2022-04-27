@@ -330,8 +330,8 @@ display(void)
 	glClear(GL_COLOR_BUFFER_BIT);
 	// bind textures on corresponding texture units
 	glFrontFace(GL_CW);
-	glCullFace(GL_BACK);
-	glEnable(GL_CULL_FACE);
+	//glCullFace(GL_BACK);
+	//glEnable(GL_CULL_FACE);
 
 	glm::mat4 ModelViewMatrix = model * getViewMatrix();		
 	
