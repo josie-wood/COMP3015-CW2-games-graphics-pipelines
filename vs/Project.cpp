@@ -60,6 +60,7 @@ float lastFrame = 0;
 glm::mat4 ViewMatrix;
 glm::mat4 ProjectionMatrix;
 
+
 float numBlades = 3;
 int seasonIndicator = 1;
 vec4 baseColour = vec4(0, 0.2, 0, 1.0);
@@ -276,6 +277,10 @@ init(void)
 	// creating the projection matrix
 	glm::mat4 projection = glm::perspective(45.0f, 4.0f / 3, 0.1f, 20.0f);
 
+	//add projection to shader
+	int projLoc = glGetUniformLocation(program, "proj");
+	glUniformMatrix4fv(projLoc, 1, GL_FALSE, glm::value_ptr(projection[0]));
+
 	// Adding all matrices up to create combined matrix
 	glm::mat4 mvp = projection * view * model;
 
@@ -283,6 +288,15 @@ init(void)
 	//adding the Uniform to the shader
 	int mvpLoc = glGetUniformLocation(program, "mvp");
 	glUniformMatrix4fv(mvpLoc, 1, GL_FALSE, glm::value_ptr(mvp));
+
+	// CREATE mv matrix
+	glm::mat4 mv =  view * model;
+
+
+	//adding the Uniform to the shader
+	int mvLoc = glGetUniformLocation(program, "mv");
+	glUniformMatrix4fv(mvLoc, 1, GL_FALSE, glm::value_ptr(mv));
+
 
 	glEnableVertexAttribArray(vPosition);
 	glEnableVertexAttribArray(cPosition);
