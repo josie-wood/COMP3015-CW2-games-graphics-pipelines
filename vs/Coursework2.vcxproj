@@ -175,6 +175,8 @@
       <DeploymentContent>true</DeploymentContent>
     </None>
     <None Include="media\cw2.geometry" />
+    <None Include="media\passthrough.frag" />
+    <None Include="media\passthrough.vert" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>

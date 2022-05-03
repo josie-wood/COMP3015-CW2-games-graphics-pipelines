@@ -92,12 +92,13 @@ init(void)
 {
 	ShaderInfo  shaders[] =
 	{
-		{ GL_VERTEX_SHADER, "media/cw2.vert" },
+		//{ GL_VERTEX_SHADER, "media/cw2.vert" },
+		{ GL_VERTEX_SHADER, "media/passthrough.vert" },
 
-		//{ GL_GEOMETRY_SHADER,  "media/cw2.geom" },
-		{ GL_GEOMETRY_SHADER,  "media/cw2.geometry" },
+		//{ GL_GEOMETRY_SHADER,  "media/cw2.geometry" },
 				
-		{ GL_FRAGMENT_SHADER, "media/cw2.frag" },
+		//{ GL_FRAGMENT_SHADER, "media/cw2.frag" },
+		{ GL_FRAGMENT_SHADER, "media/passthrough.frag" },
 
 		{ GL_NONE, NULL }
 	};
