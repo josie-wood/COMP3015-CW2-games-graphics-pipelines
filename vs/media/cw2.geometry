@@ -3,7 +3,7 @@
 //layout (points) out;
 
 layout(triangles) in;
-layout(triangle_strip, max_vertices = 8) out;
+layout(triangle_strip, max_vertices = 50) out;
 
 uniform float numBlades;
 

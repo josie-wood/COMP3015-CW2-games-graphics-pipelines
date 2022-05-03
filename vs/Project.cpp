@@ -239,12 +239,12 @@ GLfloat vertices[][3] = {
 	{0.5,  -2, -0.5},
 	{1.0,  -2, -0.5},
 
-	////ROW 5
-	//{-1.0, -2, -1.0},
-	//{-0.5, -2, -1.0},
-	//{0.0,  -2, -1.0},
-	//{0.5,  -2, -1.0},
-	//{1.0,  -2, -1.0},
+	//ROW 5
+	{-1.0, -2, -1.0},
+	{-0.5, -2, -1.0},
+	{0.0,  -2, -1.0},
+	{0.5,  -2, -1.0},
+	{1.0,  -2, -1.0},
 
 	//ROW 3
 	{-1.0, -2, 0.0},
@@ -347,9 +347,9 @@ GLuint indices[][3] = {  // note that we start from 0!
 	model = glm::rotate(model, glm::radians(-00.0f), glm::vec3(1.0f, 0.0f, 0.0f));
 	model = glm::translate(model, glm::vec3(0.0f, 0.0f, -1.0f));
 
-	//add model matrix to shader
-	int modelLoc = glGetUniformLocation(program, "m");
-	glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model[0]));
+	////add model matrix to shader
+	//int modelLoc = glGetUniformLocation(program, "m");
+	//glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model[0]));
 
 
 	// creating the view matrix
@@ -361,25 +361,25 @@ GLuint indices[][3] = {  // note that we start from 0!
 		glm::vec3(0, 1, 0)  // Head is up (set to 0,-1,0 to look upside-down)
 		);
 
-	//add view matrix to shader
+	////add view matrix to shader
 
-	int viewLoc = glGetUniformLocation(program, "v");
-	glUniformMatrix4fv(viewLoc, 1, GL_FALSE, glm::value_ptr(view[0]));
+	//int viewLoc = glGetUniformLocation(program, "v");
+	//glUniformMatrix4fv(viewLoc, 1, GL_FALSE, glm::value_ptr(view[0]));
 
 	// creating the projection matrix
 	glm::mat4 projection = glm::perspective(45.0f, 4.0f / 3, 0.1f, 20.0f);
 
-	//add projection to shader
-	int projLoc = glGetUniformLocation(program, "p");
-	glUniformMatrix4fv(projLoc, 1, GL_FALSE, glm::value_ptr(projection[0]));
+	////add projection to shader
+	//int projLoc = glGetUniformLocation(program, "p");
+	//glUniformMatrix4fv(projLoc, 1, GL_FALSE, glm::value_ptr(projection[0]));
 
 	// Adding all matrices up to create combined matrix
 	glm::mat4 mvp = projection * view * model;
 
 
-	//adding the Uniform to the shader
-	int mvpLoc = glGetUniformLocation(program, "mvp");
-	glUniformMatrix4fv(mvpLoc, 1, GL_FALSE, glm::value_ptr(mvp));
+	////adding the Uniform to the shader
+	//int mvpLoc = glGetUniformLocation(program, "mvp");
+	//glUniformMatrix4fv(mvpLoc, 1, GL_FALSE, glm::value_ptr(mvp));
 
 
 
