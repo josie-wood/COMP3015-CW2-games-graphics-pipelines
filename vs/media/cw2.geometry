@@ -13,25 +13,30 @@ out vec4 fragColourPass;
 out vec2 TexCoordPass;
 
 uniform vec4 baseColour;
+uniform mat4 mvp;
 
+uniform mat4 m;
+uniform mat4 v;
+uniform mat4 p;
 
 void main() {    
     
     fragColourPass = baseColour;
+    mat4 matrix = p*v;
 
 
 for(int i = 0; i < gl_in.length(); i++)
     {
-        gl_Position = gl_in[i].gl_Position + vec4(0.3, 0, 0, 0);
+        gl_Position = matrix * (gl_in[i].gl_Position + vec4(0.3, 0, 0, 0));
         EmitVertex();
         
-        gl_Position = gl_in[i].gl_Position + vec4(0, 1, 0, 0);
+        gl_Position = matrix * (gl_in[i].gl_Position + vec4(0, 1, 0, 0));
         EmitVertex();
 
-        gl_Position = gl_in[i].gl_Position + vec4(-0.3, 0, 0, 0);
+        gl_Position = matrix * (gl_in[i].gl_Position + vec4(-0.3, 0, 0, 0));
         EmitVertex();
         
-         gl_Position = gl_in[i].gl_Position + vec4(0.3, 0, 0, 0);
+         gl_Position =matrix * ( gl_in[i].gl_Position + vec4(0.3, 0, 0, 0));
         EmitVertex();
 
         EndPrimitive();

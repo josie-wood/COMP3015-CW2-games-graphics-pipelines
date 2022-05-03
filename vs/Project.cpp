@@ -265,6 +265,11 @@ init(void)
 	model = glm::rotate(model, glm::radians(-00.0f), glm::vec3(1.0f, 0.0f, 0.0f));
 	model = glm::translate(model, glm::vec3(0.0f, 0.0f, -1.0f));
 
+	//add model matrix to shader
+	int modelLoc = glGetUniformLocation(program, "m");
+	glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model[0]));
+
+
 	// creating the view matrix
 	
 
@@ -274,11 +279,16 @@ init(void)
 		glm::vec3(0, 1, 0)  // Head is up (set to 0,-1,0 to look upside-down)
 		);
 
+	//add view matrix to shader
+
+	int viewLoc = glGetUniformLocation(program, "v");
+	glUniformMatrix4fv(viewLoc, 1, GL_FALSE, glm::value_ptr(view[0]));
+
 	// creating the projection matrix
 	glm::mat4 projection = glm::perspective(45.0f, 4.0f / 3, 0.1f, 20.0f);
 
 	//add projection to shader
-	int projLoc = glGetUniformLocation(program, "proj");
+	int projLoc = glGetUniformLocation(program, "p");
 	glUniformMatrix4fv(projLoc, 1, GL_FALSE, glm::value_ptr(projection[0]));
 
 	// Adding all matrices up to create combined matrix
@@ -289,13 +299,6 @@ init(void)
 	int mvpLoc = glGetUniformLocation(program, "mvp");
 	glUniformMatrix4fv(mvpLoc, 1, GL_FALSE, glm::value_ptr(mvp));
 
-	// CREATE mv matrix
-	glm::mat4 mv =  view * model;
-
-
-	//adding the Uniform to the shader
-	int mvLoc = glGetUniformLocation(program, "mv");
-	glUniformMatrix4fv(mvLoc, 1, GL_FALSE, glm::value_ptr(mv));
 
 
 	glEnableVertexAttribArray(vPosition);
@@ -355,9 +358,19 @@ display(void)
 	// Adding all matrices up to create combined matrix
 	glm::mat4 mvp = projection * ModelViewMatrix;
 
-	//adding the Uniform to the shader
+	//adding the Uniforms to the shader
 	int mvpLoc = glGetUniformLocation(program, "mvp");
 	glUniformMatrix4fv(mvpLoc, 1, GL_FALSE, glm::value_ptr(mvp));
+
+	int mLoc = glGetUniformLocation(program, "m");
+	glUniformMatrix4fv(mLoc, 1, GL_FALSE, glm::value_ptr(model));
+
+	int vLoc = glGetUniformLocation(program, "v");
+	glUniformMatrix4fv(vLoc, 1, GL_FALSE, glm::value_ptr(getViewMatrix()));
+
+	int pLoc = glGetUniformLocation(program, "p");
+	glUniformMatrix4fv(pLoc, 1, GL_FALSE, glm::value_ptr(getProjectionMatrix()));
+
 
 	//modify position using mv & p
 	glBindVertexArray(VAOs[0]);
