@@ -38,7 +38,7 @@ GLuint  VAOs[NumVAOs];
 GLuint  Buffers[NumBuffers];
 GLuint texture1;
 
-const GLuint  NumVertices = 25;
+const GLuint  NumVertices = 100;
 GLFWwindow* window;
 glm::mat4 model;
 
@@ -51,7 +51,7 @@ float verticalAngle = 0.0f;
 // Initial Field of View
 float initialFoV = 45.0f;
 
-float speed = 0.005f; // 3 units / second
+float speed = 0.01f; // 3 units / second
 float mouseSpeed = 0.0005f;
 float lastInput = 0;
 float deltaTime = 0;
@@ -110,51 +110,58 @@ init(void)
 
 	// setting up the cube
 
-	GLfloat vertices[] = {
-	-0.5f, -0.5f, -0.5f, //0 b l
-	 0.5f, -0.5f, -0.5f, //1 b r
-	 0.5f,  0.5f, -0.5f, //2 t r
-	 0.5f,  0.5f, -0.5f, //3 t r
-	-0.5f,  0.5f, -0.5f, //4 t l 
-	-0.5f, -0.5f, -0.5f, //5 b l
+#pragma region cubeinfo
 
-	-0.5f, -0.5f,  0.5f, //6 b l
-	 0.5f, -0.5f,  0.5f, //7 b r
-	 0.5f,  0.5f,  0.5f, //8 t r
-	 0.5f,  0.5f,  0.5f, //9 t r 
-	-0.5f,  0.5f,  0.5f, //10 t l
-	-0.5f, -0.5f,  0.5f, //11 b l
 
-	-0.5f,  0.5f,  0.5f,
-	-0.5f,  0.5f, -0.5f,
-	-0.5f, -0.5f, -0.5f,
-	-0.5f, -0.5f, -0.5f,
-	-0.5f, -0.5f,  0.5f,
-	-0.5f,  0.5f,  0.5f,
 
-	 0.5f,  0.5f,  0.5f,
-	 0.5f,  0.5f, -0.5f,
-	 0.5f, -0.5f, -0.5f,
-	 0.5f, -0.5f, -0.5f,
-	 0.5f, -0.5f,  0.5f,
-	 0.5f,  0.5f,  0.5f,
 
-	-0.5f, -0.5f, -0.5f, // b l b
-	 0.5f, -0.5f, -0.5f, // b r b
-	 0.5f, -0.5f,  0.5f, // b r f
-	 0.5f, -0.5f,  0.5f, // b r b
-	-0.5f, -0.5f,  0.5f, // b l f
-	-0.5f, -0.5f, -0.5f, // b l b
+	//GLfloat vertices[] = {
+	//-0.5f, -0.5f, -0.5f, //0 b l
+	// 0.5f, -0.5f, -0.5f, //1 b r
+	// 0.5f,  0.5f, -0.5f, //2 t r
+	// 0.5f,  0.5f, -0.5f, //3 t r
+	//-0.5f,  0.5f, -0.5f, //4 t l 
+	//-0.5f, -0.5f, -0.5f, //5 b l
 
-	-0.5f,  0.5f, -0.5f,
-	 0.5f,  0.5f, -0.5f,
-	 0.5f,  0.5f,  0.5f,
-	 0.5f,  0.5f,  0.5f,
-	-0.5f,  0.5f,  0.5f,
-	-0.5f,  0.5f, -0.5f,
-	};
+	//-0.5f, -0.5f,  0.5f, //6 b l
+	// 0.5f, -0.5f,  0.5f, //7 b r
+	// 0.5f,  0.5f,  0.5f, //8 t r
+	// 0.5f,  0.5f,  0.5f, //9 t r 
+	//-0.5f,  0.5f,  0.5f, //10 t l
+	//-0.5f, -0.5f,  0.5f, //11 b l
 
-	GLfloat normals[]{
+	//-0.5f,  0.5f,  0.5f,
+	//-0.5f,  0.5f, -0.5f,
+	//-0.5f, -0.5f, -0.5f,
+	//-0.5f, -0.5f, -0.5f,
+	//-0.5f, -0.5f,  0.5f,
+	//-0.5f,  0.5f,  0.5f,
+
+	// 0.5f,  0.5f,  0.5f,
+	// 0.5f,  0.5f, -0.5f,
+	// 0.5f, -0.5f, -0.5f,
+	// 0.5f, -0.5f, -0.5f,
+	// 0.5f, -0.5f,  0.5f,
+	// 0.5f,  0.5f,  0.5f,
+
+	//-0.5f, -0.5f, -0.5f, // b l b
+	// 0.5f, -0.5f, -0.5f, // b r b
+	// 0.5f, -0.5f,  0.5f, // b r f
+	// 0.5f, -0.5f,  0.5f, // b r b
+	//-0.5f, -0.5f,  0.5f, // b l f
+	//-0.5f, -0.5f, -0.5f, // b l b
+
+	//-0.5f,  0.5f, -0.5f,
+	// 0.5f,  0.5f, -0.5f,
+	// 0.5f,  0.5f,  0.5f,
+	// 0.5f,  0.5f,  0.5f,
+	//-0.5f,  0.5f,  0.5f,
+	//-0.5f,  0.5f, -0.5f,
+	//};
+
+
+
+	/*GLfloat normals[]{
 	0.0f,  0.0f, -1.0f,
 	0.0f,  0.0f, -1.0f,
 	0.0f,  0.0f, -1.0f,
@@ -195,29 +202,104 @@ init(void)
 	0.0f,  1.0f,  0.0f,
 	0.0f,  1.0f,  0.0f,
 	0.0f,  1.0f,  0.0f,
-	0.0f,  1.0f,  0.0f };
+	0.0f,  1.0f,  0.0f };*/
 
-	GLuint indices[][3] = {  // note that we start from 0!
-		{0, 1, 2},  // first Triangle front
-		{3, 4, 5},   // second Triangle
+	//GLuint indices[][3] = {  // note that we start from 0!
+	//	{0, 1, 2},  // first Triangle front
+	//	{3, 4, 5},   // second Triangle
 
-		{8, 7, 6 },
-		{11, 10, 9 },
+	//	{8, 7, 6 },
+	//	{11, 10, 9 },
 
-		{14, 13, 12 },
-		{17, 16, 15 },
+	//	{14, 13, 12 },
+	//	{17, 16, 15 },
 
-		{18, 19, 20 },
-		{21, 22, 23 },
+	//	{18, 19, 20 },
+	//	{21, 22, 23 },
 
-		{26, 25, 24 },
-		{29, 28, 27 },
+	//	{26, 25, 24 },
+	//	{29, 28, 27 },
 
-		{30, 31, 32 },  // first Triangle back
-		{33, 34, 35 }   // second Triangle
-	};
+	//	{30, 31, 32 },  // first Triangle back
+	//	{33, 34, 35 }   // second Triangle
+	//};
 
-	
+#pragma endregion
+
+//plane info
+
+GLfloat vertices[][3] = {
+
+
+
+	//ROW 4
+	{-1.0, -2, -0.5},
+	{-0.5, -2, -0.5},
+	{0.0,  -2, -0.5},
+	{0.5,  -2, -0.5},
+	{1.0,  -2, -0.5},
+
+	////ROW 5
+	//{-1.0, -2, -1.0},
+	//{-0.5, -2, -1.0},
+	//{0.0,  -2, -1.0},
+	//{0.5,  -2, -1.0},
+	//{1.0,  -2, -1.0},
+
+	//ROW 3
+	{-1.0, -2, 0.0},
+	{-0.5, -2, 0.0},
+	{0.0,  -2, 0.0},
+	{0.5,  -2, 0.0},
+	{1.0,  -2, 0.0},
+
+	//ROW 2
+	{-1.0, -2, 0.5},
+	{-0.5, -2, 0.5},
+	{0.0,  -2, 0.5},
+	{0.5,  -2, 0.5},
+	{1.0,  -2, 0.5},
+
+	//ROW 1
+	{-1.0, -2, 1.0},
+	{-0.5, -2, 1.0},
+	{0.0,  -2, 1.0},
+	{0.5,  -2, 1.0},
+	{1.0,  -2, 1.0},
+
+
+};
+GLuint indices[][3] = {  // note that we start from 0!
+	//tri row 1
+
+	0,	1,	5,
+	1,	2, 6,
+	2,	3,	7,
+	3,	4,	8,
+
+	//TRI ROW 2
+	5,	6,	10,
+	6,	7,	11,
+	7,	8,	12,
+	8,	9,	13,
+
+	//TRI ROW 3
+	10,	11,	15,
+	11,	12,	16,
+	12,	13,	17,
+	13,	14,	18,
+
+	//tri row 4
+	15,	16,	20,
+	16,	17,	21,
+	17,	18,	22,
+	18,	19,	23,
+
+	//bottom left corner
+	23,	19,	24,
+
+
+};
 
 
 	glGenBuffers(NumBuffers, Buffers);
@@ -380,7 +462,7 @@ display(void)
 	//glDrawElements(GL_TRIANGLES, NumVertices, GL_UNSIGNED_INT, 0);
 	//glDrawArrays(GL_POINTS, 0, 4);
 	//glDrawElements(GL_POINTS, 36, GL_UNSIGNED_INT, 0);
-	glDrawElements(GL_TRIANGLES, 36, GL_UNSIGNED_INT, 0);
+	glDrawElements(GL_TRIANGLES, NumVertices, GL_UNSIGNED_INT, 0);
 }
 
 
