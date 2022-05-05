@@ -1,14 +1,13 @@
 # Stylized animal fur shader
-
+![screenshot](https://github.com/josie-wood/COMP3015-CW2-games-graphics-pipelines/blob/main/vs/media/photo.png)
 ## How does the user interact with your executable? How do you open and control the software you wrote (exe file)?
 
 Run the executable by either:
 * double clicking the file in the folder to run it
-<<<<<<< HEAD
+
 * navigating to the correct Release folder in the command line and entering 'Coursework2.exe' to run it.
-=======
+
 * navigating to the correct Release folder in the command line and entering 'Coursework2.exe' to run it. 
->>>>>>> 5599e38203acd139105c1f15aba41f62b3b2327b
 
 Once the application has opened, user input can be entered to move around the scene and see the geometry from multiple angles:
 
@@ -25,7 +24,6 @@ The geometry shader is between the vertex and fragment shader stages, and takes 
 
 ## What makes your shader program special and how does it compare to similar things?
 
-<<<<<<< HEAD
 I started with a basic shader program I'd written for a previous module with passthrough frag and vert shaders and some basic camera movement. I wanted to create a fur shader that creates 'tufts' of fluff rather than an even covering, to give it a more organic feel. I planned on using noise to variate the placements of the additional geometry, but due to health issues, I was unable to complete the project.
 This is a special program because it can take in any geometry and make a tuft of hair at every single vertices, working in the GPU to save resources compared to modelling all of these element individually.
 
@@ -35,10 +33,7 @@ https://github.com/josie-wood/COMP3015-CW2-games-graphics-pipelines/blob/main/RE
 
 ## A Link to the unlisted YouTube Video
 
-https://youtu.be/0xAl1UYvr9U 
-=======
-I started with a basic shader program I'd written for a previous module with passthrough frag and vert shaders and some basic camera movement. I wanted to create a fur shader that creates 'tufts' of fluff rather than an even covering, to give it a more organic feel. I planned on using noise to variate the placements of the additional geometry, but due to health issues, I was unable to complete the project. 
-This is a special program because it can take in any geometry and make a tuft of hair at every single vertices, working in the GPU to save resources compared to modelling all of these elements individually. 
+[Unlisted youtube video link](https://youtu.be/0xAl1UYvr9U)
 
-![screenshot](https://github.com/josie-wood/COMP3015-CW2-games-graphics-pipelines/blob/main/vs/media/photo.png)
->>>>>>> 5599e38203acd139105c1f15aba41f62b3b2327b
+
+
