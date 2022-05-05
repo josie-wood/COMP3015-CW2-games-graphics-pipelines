@@ -38,7 +38,7 @@ GLuint  VAOs[NumVAOs];
 GLuint  Buffers[NumBuffers];
 GLuint texture1;
 
-const GLuint  NumVertices = 100;
+const GLuint  NumVertices = 3000;
 GLFWwindow* window;
 glm::mat4 model;
 

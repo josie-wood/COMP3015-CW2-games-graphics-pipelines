@@ -3,7 +3,7 @@
 //layout (points) out;
 
 layout(triangles) in;
-layout(triangle_strip, max_vertices = 50) out;
+layout(triangle_strip, max_vertices = 100) out;
 
 uniform float numBlades;
 
@@ -13,6 +13,7 @@ out vec4 fragColourPass;
 out vec2 TexCoordPass;
 
 uniform vec4 baseColour;
+uniform vec4 tipColour;
 uniform mat4 mvp;
 
 uniform mat4 m;
@@ -27,19 +28,50 @@ void main() {
 
 for(int i = 0; i < gl_in.length(); i++)
     {
-        gl_Position = matrix * (gl_in[i].gl_Position + vec4(0.3, 0, 0, 0));
-        EmitVertex();
-        
-        gl_Position = matrix * (gl_in[i].gl_Position + vec4(0, 1, 0, 0));
+        fragColourPass = baseColour;
+        gl_Position = matrix * (gl_in[i].gl_Position + vec4(-0.2, 0, -0.2, 0));
         EmitVertex();
 
-        gl_Position = matrix * (gl_in[i].gl_Position + vec4(-0.3, 0, 0, 0));
+        gl_Position = matrix * (gl_in[i].gl_Position + vec4(-0.1, 0, 0.2, 0));
         EmitVertex();
-        
-         gl_Position =matrix * ( gl_in[i].gl_Position + vec4(0.3, 0, 0, 0));
+
+        gl_Position = matrix * (gl_in[i].gl_Position + vec4(0.2, 0, -0.1, 0));
+        EmitVertex();
+ EndPrimitive();
+        //up 1
+
+        gl_Position = matrix * (gl_in[i].gl_Position + vec4(-0.2, 0, -0.2, 0));
+        EmitVertex();
+
+        gl_Position = matrix * (gl_in[i].gl_Position + vec4(-0.1, 0, 0.2, 0));
+        EmitVertex();
+
+        gl_Position = matrix * (gl_in[i].gl_Position + vec4(-0.5, 1, 0.1, 0));
+        EmitVertex();
+ EndPrimitive();
+//tri 2
+
+        gl_Position = matrix * (gl_in[i].gl_Position + vec4(0.4, 1, 0.4, 0));
+        EmitVertex();
+
+        gl_Position = matrix * (gl_in[i].gl_Position + vec4(-0.1, 0, 0.2, 0));
+        EmitVertex();
+
+        gl_Position = matrix * (gl_in[i].gl_Position + vec4(0.2, 0, -0.1, 0));
         EmitVertex();
 
         EndPrimitive();
+//tri 4
+gl_Position = matrix * (gl_in[i].gl_Position + vec4(-0.2, 0, -0.2, 0));
+        EmitVertex();
+
+        gl_Position = matrix * (gl_in[i].gl_Position + vec4(0.1, 1, -0.5, 0));
+        EmitVertex();
+
+        gl_Position = matrix * (gl_in[i].gl_Position + vec4(0.2, 0, -0.1, 0));
+        EmitVertex();
+ EndPrimitive();
+        
 
         
     }
