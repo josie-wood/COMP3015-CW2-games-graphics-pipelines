@@ -61,12 +61,9 @@ glm::mat4 ViewMatrix;
 glm::mat4 ProjectionMatrix;
 
 
-float numBlades = 3;
-int seasonIndicator = 1;
 vec4 baseColour = vec4(0, 0.2, 0, 1.0);
 vec4 tipColour = vec4(0, 0.6, 0, 1.0);
-float flowers = 0;
-vec4 flowerColour = vec4(1, 1, 1, 1);
+
 
 GLuint program;
 
@@ -116,157 +113,49 @@ init(void)
 
 
 
-	//GLfloat vertices[] = {
-	//-0.5f, -0.5f, -0.5f, //0 b l
-	// 0.5f, -0.5f, -0.5f, //1 b r
-	// 0.5f,  0.5f, -0.5f, //2 t r
-	// 0.5f,  0.5f, -0.5f, //3 t r
-	//-0.5f,  0.5f, -0.5f, //4 t l 
-	//-0.5f, -0.5f, -0.5f, //5 b l
-
-	//-0.5f, -0.5f,  0.5f, //6 b l
-	// 0.5f, -0.5f,  0.5f, //7 b r
-	// 0.5f,  0.5f,  0.5f, //8 t r
-	// 0.5f,  0.5f,  0.5f, //9 t r 
-	//-0.5f,  0.5f,  0.5f, //10 t l
-	//-0.5f, -0.5f,  0.5f, //11 b l
-
-	//-0.5f,  0.5f,  0.5f,
-	//-0.5f,  0.5f, -0.5f,
-	//-0.5f, -0.5f, -0.5f,
-	//-0.5f, -0.5f, -0.5f,
-	//-0.5f, -0.5f,  0.5f,
-	//-0.5f,  0.5f,  0.5f,
-
-	// 0.5f,  0.5f,  0.5f,
-	// 0.5f,  0.5f, -0.5f,
-	// 0.5f, -0.5f, -0.5f,
-	// 0.5f, -0.5f, -0.5f,
-	// 0.5f, -0.5f,  0.5f,
-	// 0.5f,  0.5f,  0.5f,
-
-	//-0.5f, -0.5f, -0.5f, // b l b
-	// 0.5f, -0.5f, -0.5f, // b r b
-	// 0.5f, -0.5f,  0.5f, // b r f
-	// 0.5f, -0.5f,  0.5f, // b r b
-	//-0.5f, -0.5f,  0.5f, // b l f
-	//-0.5f, -0.5f, -0.5f, // b l b
-
-	//-0.5f,  0.5f, -0.5f,
-	// 0.5f,  0.5f, -0.5f,
-	// 0.5f,  0.5f,  0.5f,
-	// 0.5f,  0.5f,  0.5f,
-	//-0.5f,  0.5f,  0.5f,
-	//-0.5f,  0.5f, -0.5f,
-	//};
-
-
-
-	/*GLfloat normals[]{
-	0.0f,  0.0f, -1.0f,
-	0.0f,  0.0f, -1.0f,
-	0.0f,  0.0f, -1.0f,
-	0.0f,  0.0f, -1.0f,
-	0.0f,  0.0f, -1.0f,
-	0.0f,  0.0f, -1.0f,
-
-	0.0f,  0.0f, 1.0f,
-	0.0f,  0.0f, 1.0f,
-	0.0f,  0.0f, 1.0f,
-	0.0f,  0.0f, 1.0f,
-	0.0f,  0.0f, 1.0f,
-	0.0f,  0.0f, 1.0f,
-
-	-1.0f,  0.0f,  0.0f,
-	-1.0f,  0.0f,  0.0f,
-	-1.0f,  0.0f,  0.0f,
-	-1.0f,  0.0f,  0.0f,
-	-1.0f,  0.0f,  0.0f,
-	-1.0f,  0.0f,  0.0f,
-
-	1.0f,  0.0f,  0.0f,
-	1.0f,  0.0f,  0.0f,
-	1.0f,  0.0f,  0.0f,
-	1.0f,  0.0f,  0.0f,
-	1.0f,  0.0f,  0.0f,
-	1.0f,  0.0f,  0.0f,
-
-	0.0f, -1.0f,  0.0f,
-	0.0f, -1.0f,  0.0f,
-	0.0f, -1.0f,  0.0f,
-	0.0f, -1.0f,  0.0f,
-	0.0f, -1.0f,  0.0f,
-	0.0f, -1.0f,  0.0f,
-
-	0.0f,  1.0f,  0.0f,
-	0.0f,  1.0f,  0.0f,
-	0.0f,  1.0f,  0.0f,
-	0.0f,  1.0f,  0.0f,
-	0.0f,  1.0f,  0.0f,
-	0.0f,  1.0f,  0.0f };*/
-
-	//GLuint indices[][3] = {  // note that we start from 0!
-	//	{0, 1, 2},  // first Triangle front
-	//	{3, 4, 5},   // second Triangle
-
-	//	{8, 7, 6 },
-	//	{11, 10, 9 },
-
-	//	{14, 13, 12 },
-	//	{17, 16, 15 },
-
-	//	{18, 19, 20 },
-	//	{21, 22, 23 },
-
-	//	{26, 25, 24 },
-	//	{29, 28, 27 },
-
-	//	{30, 31, 32 },  // first Triangle back
-	//	{33, 34, 35 }   // second Triangle
-	//};
 
 #pragma endregion
 
 //plane info
 
-GLfloat vertices[][3] = {
+GLfloat vertices[75] = {
 
 
 
 	//ROW 4
-	{-1.0, -2, -0.5},
-	{-0.5, -2, -0.5},
-	{0.0,  -2, -0.5},
-	{0.5,  -2, -0.5},
-	{1.0,  -2, -0.5},
+	 -1.0, -2, -0.5 ,
+	 -0.5, -2, -0.5 ,
+	 0.0,  -2, -0.5 ,
+	 0.5,  -2, -0.5 ,
+	 1.0,  -2, -0.5 ,
 
 	//ROW 5
-	{-1.0, -2, -1.0},
-	{-0.5, -2, -1.0},
-	{0.0,  -2, -1.0},
-	{0.5,  -2, -1.0},
-	{1.0,  -2, -1.0},
+	 -1.0, -2, -1.0 ,
+	 -0.5, -2, -1.0 ,
+	 0.0,  -2, -1.0 ,
+	 0.5,  -2, -1.0 ,
+	 1.0,  -2, -1.0 ,
 
 	//ROW 3
-	{-1.0, -2, 0.0},
-	{-0.5, -2, 0.0},
-	{0.0,  -2, 0.0},
-	{0.5,  -2, 0.0},
-	{1.0,  -2, 0.0},
+	 -1.0, -2, 0.0 ,
+	 -0.5, -2, 0.0 ,
+	 0.0,  -2, 0.0 ,
+	 0.5,  -2, 0.0 ,
+	 1.0,  -2, 0.0 ,
 
 	//ROW 2
-	{-1.0, -2, 0.5},
-	{-0.5, -2, 0.5},
-	{0.0,  -2, 0.5},
-	{0.5,  -2, 0.5},
-	{1.0,  -2, 0.5},
+	 -1.0, -2, 0.5 ,
+	 -0.5, -2, 0.5 ,
+	 0.0,  -2, 0.5 ,
+	 0.5,  -2, 0.5 ,
+	 1.0,  -2, 0.5 ,
 
 	//ROW 1
-	{-1.0, -2, 1.0},
-	{-0.5, -2, 1.0},
-	{0.0,  -2, 1.0},
-	{0.5,  -2, 1.0},
-	{1.0,  -2, 1.0},
+	 -1.0, -2, 1.0 ,
+	 -0.5, -2, 1.0 ,
+	 0.0,  -2, 1.0 ,
+	 0.5,  -2, 1.0 ,
+	 1.0,  -2, 1.0 ,
 
 
 };
@@ -388,14 +277,7 @@ GLuint indices[][3] = {  // note that we start from 0!
 	glEnableVertexAttribArray(cPosition);
 	glEnableVertexAttribArray(tPosition);
 
-	//adding the num blades uniform to the shader
-	GLint numBladesLoc = glGetUniformLocation(program, "numBlades");
-	glUniform1f(numBladesLoc, numBlades);
-
-	//add season indicator uniform to shader
-	GLint seasonIndicatorLoc = glGetUniformLocation(program, "seasonIndicator");
-	glUniform1f(seasonIndicatorLoc, seasonIndicator);
-
+	
 	//add baseCol uniform to shader
 	GLint baseColourLoc = glGetUniformLocation(program, "baseColour");
 	glUniform4f(baseColourLoc, baseColour.x, baseColour.y, baseColour.z, baseColour.w);
@@ -404,14 +286,7 @@ GLuint indices[][3] = {  // note that we start from 0!
 	GLint tipColourLoc = glGetUniformLocation(program, "tipColour");
 	glUniform4f(tipColourLoc, tipColour.x, tipColour.y, tipColour.z, tipColour.w);
 
-	//add flowers int to shader
-	GLint flowersLoc = glGetUniformLocation(program, "flowers");
-	glUniform1f(flowersLoc, flowers);
-
-	//add add flower col uniform to shader
-	GLint flowerColourLoc = glGetUniformLocation(program, "flowerColour");
-	glUniform4f(flowerColourLoc, flowerColour.x, flowerColour.y, flowerColour.z, flowerColour.w);
-
+	
 }
 
 
